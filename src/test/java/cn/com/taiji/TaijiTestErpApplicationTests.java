@@ -9,14 +9,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
-
 import cn.com.taiji.domain.TEmp;
 import cn.com.taiji.domain.TOrg;
 import cn.com.taiji.service.EmpService;
 import cn.com.taiji.service.OrgService;
 
-import cn.com.taiji.domain.TEmp;
 import cn.com.taiji.domain.TSalary;
 import cn.com.taiji.service.SalService;
 
@@ -34,11 +31,28 @@ public class TaijiTestErpApplicationTests {
 	@Test
 	public void selMoneyByeName() {
 		List<TSalary> list = new ArrayList<>();
-		list = ss.findEmpMoney("张三");
+		String name="许聪慧";
+		list = ss.findMoneyByeName(name);
+		System.out.println("\n==========================");
+		System.out.println(name+"的薪资发放情况如下：");
 		for (TSalary tSalary : list) {
 			System.out.println(tSalary);
 		}
+		System.out.println("==========================\n");
+	}
+	
 
+	@Test
+	public void selMoneyByeId() {
+		List<TSalary> list = new ArrayList<>();
+		Integer id=1;
+		list = ss.findMoneyByeId(id);
+		System.out.println("\n==========================");
+		System.out.println(id+"的薪资发放情况如下：");
+		for (TSalary tSalary : list) {
+			System.out.println(tSalary);
+		}
+		System.out.println("==========================\n");
 	}
 
 	@Test
