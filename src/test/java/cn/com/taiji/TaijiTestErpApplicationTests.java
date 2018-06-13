@@ -31,11 +31,29 @@ public class TaijiTestErpApplicationTests {
 	@Test
 	public void selMoneyByeName() {
 		List<TSalary> list = new ArrayList<>();
-		list = ss.findEmpMoney("许聪慧");
+
+		String name="许聪慧";
+		list = ss.findMoneyByeName(name);
+		System.out.println("\n==========================");
+		System.out.println(name+"的薪资发放情况如下：");
 		for (TSalary tSalary : list) {
 			System.out.println(tSalary);
 		}
+		System.out.println("==========================\n");
+	}
+	
 
+	@Test
+	public void selMoneyByeId() {
+		List<TSalary> list = new ArrayList<>();
+		Integer id=1;
+		list = ss.findMoneyByeId(id);
+		System.out.println("\n==========================");
+		System.out.println(id+"的薪资发放情况如下：");
+		for (TSalary tSalary : list) {
+			System.out.println(tSalary);
+		}
+		System.out.println("==========================\n");
 	}
 
 	@Test
