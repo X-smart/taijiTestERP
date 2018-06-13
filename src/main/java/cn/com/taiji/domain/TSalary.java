@@ -34,6 +34,14 @@ public class TSalary implements Serializable {
 	public TSalary() {
 	}
 
+	public TSalary(int sId, Date sDate, String sMoney, cn.com.taiji.domain.TEmp tEmp) {
+		super();
+		this.sId = sId;
+		this.sDate = sDate;
+		this.sMoney = sMoney;
+		TEmp = tEmp;
+	}
+
 	public int getSId() {
 		return this.sId;
 	}
@@ -64,6 +72,11 @@ public class TSalary implements Serializable {
 
 	public void setTEmp(TEmp TEmp) {
 		this.TEmp = TEmp;
+	}
+
+	@Override
+	public String toString() {
+		return "TSalary [sId=" + sId + ", sDate=" + sDate + ", sMoney=" + sMoney + ", TEmp=" + TEmp + "]";
 	}
 
 }

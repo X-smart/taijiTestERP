@@ -4,40 +4,50 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the t_emp database table.
  * 
  */
 @Entity
-@Table(name="t_emp")
-@NamedQuery(name="TEmp.findAll", query="SELECT t FROM TEmp t")
+@Table(name = "t_emp")
+@NamedQuery(name = "TEmp.findAll", query = "SELECT t FROM TEmp t")
 public class TEmp implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="e_id")
+	@Column(name = "e_id")
 	private int eId;
 
-	@Column(name="e_name")
+	@Column(name = "e_name")
 	private String eName;
 
-	@Column(name="e_sex")
+	@Column(name = "e_sex")
 	private String eSex;
 
-	@Column(name="e_tel")
+	@Column(name = "e_tel")
 	private String eTel;
 
-	//bi-directional many-to-one association to TOrg
+	// bi-directional many-to-one association to TOrg
 	@ManyToOne
-	@JoinColumn(name="o_id")
+	@JoinColumn(name = "o_id")
 	private TOrg TOrg;
 
-	//bi-directional many-to-one association to TSalary
-	@OneToMany(mappedBy="TEmp")
+	// bi-directional many-to-one association to TSalary
+	@OneToMany(mappedBy = "TEmp")
 	private List<TSalary> TSalaries;
 
 	public TEmp() {
+	}
+
+	public TEmp(int eId, String eName, String eSex, String eTel, cn.com.taiji.domain.TOrg tOrg,
+			List<TSalary> tSalaries) {
+		super();
+		this.eId = eId;
+		this.eName = eName;
+		this.eSex = eSex;
+		this.eTel = eTel;
+		TOrg = tOrg;
+		TSalaries = tSalaries;
 	}
 
 	public int getEId() {
