@@ -13,6 +13,11 @@ import java.util.List;
 @Table(name="t_org")
 @NamedQuery(name="TOrg.findAll", query="SELECT t FROM TOrg t")
 public class TOrg implements Serializable {
+	@Override
+	public String toString() {
+		return "TOrg [oId=" + oId + ", oName=" + oName + ", oTel=" + oTel + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,7 +35,7 @@ public class TOrg implements Serializable {
 	private List<TEmp> TEmps;
 
 	//bi-directional many-to-one association to TOrg
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="o_pid")
 	private TOrg TOrg;
 

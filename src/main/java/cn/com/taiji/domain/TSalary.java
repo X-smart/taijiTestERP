@@ -27,7 +27,7 @@ public class TSalary implements Serializable {
 	private String sMoney;
 
 	//bi-directional many-to-one association to TEmp
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="e_id")
 	private TEmp TEmp;
 
