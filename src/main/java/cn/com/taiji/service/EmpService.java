@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,10 +43,10 @@ public class EmpService {
 		return (List<TEmp>) empDao.findByEName(eName);
 	}
 
-	// 根据Id查询员工部门
-	public TOrg queryEmpOrg(Integer id) {
-		TEmp emp = empDao.findOne(id);
-		return emp.getTOrg();
+	// 查找所有员工
+	@Transactional
+	public List<TEmp> queryEmpAll(int pageStart,int pageSize) {
+		return  (List<TEmp>) empDao.findAll(new PageRequest(pageStart, pageSize));
 	}
 
 	// 根据Id修改用户

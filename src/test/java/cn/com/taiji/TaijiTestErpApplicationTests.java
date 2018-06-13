@@ -9,14 +9,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.taiji.domain.TEmp;
 import cn.com.taiji.domain.TOrg;
 import cn.com.taiji.service.EmpService;
 import cn.com.taiji.service.OrgService;
-
-import cn.com.taiji.domain.TEmp;
 import cn.com.taiji.domain.TSalary;
 import cn.com.taiji.service.SalService;
 
@@ -34,7 +31,7 @@ public class TaijiTestErpApplicationTests {
 	@Test
 	public void selMoneyByeName() {
 		List<TSalary> list = new ArrayList<>();
-		list = ss.findEmpMoney("张三");
+		list = ss.findEmpMoney("许聪慧");
 		for (TSalary tSalary : list) {
 			System.out.println(tSalary);
 		}
@@ -83,13 +80,6 @@ public class TaijiTestErpApplicationTests {
 		System.out.println(queryEmp);
 	}
 
-	// 根据Id查询员工部门
-	@Test
-	public void queryEmpOrg() {
-		TOrg org = empService.queryEmpOrg(1);
-		System.out.println(org);
-	}
-
 	// 根据Id修改用户
 	@Test
 	public void upadteEmp() {
@@ -98,6 +88,44 @@ public class TaijiTestErpApplicationTests {
 		emp.setETel("11111111");
 		TEmp upadteEmp = empService.upadteEmp(8, emp);
 		System.out.println(upadteEmp);
+	}
+
+	// 根据部门id查找部门
+	@Test
+	public void queryOrg() {
+		TOrg org = orgService.queryOrg(2);
+		System.out.println(org);
+	}
+
+	// 根据部门名称查找部门
+	@Test
+	public void queryOrgByName() {
+		List<TOrg> org = orgService.queryOrgByName("智云");
+		System.out.println(org);
+	}
+
+	// 根据员工Id查询员工部门
+	@Test
+	public void queryEmpOrg() {
+		TOrg org = orgService.queryEmpOrg(1);
+		System.out.println(org);
+	}
+
+	// 新增部门
+	@Test
+	public void saveOrg() {
+		TOrg queryOrg = new TOrg();
+		queryOrg.setOId(4);
+		queryOrg.setOName("新媒体");
+		TOrg org = orgService.queryOrg(2);
+		queryOrg.setTOrg(org);
+		orgService.saveOrg(queryOrg);
+	}
+
+	// 根据id删除部门
+	@Test
+	public void deleteOrg() {
+		orgService.deleteOrg(4);
 	}
 
 }
