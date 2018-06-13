@@ -32,24 +32,23 @@ public class TaijiTestErpApplicationTests {
 	public void selMoneyByeName() {
 		List<TSalary> list = new ArrayList<>();
 
-		String name="许聪慧";
+		String name = "许聪慧";
 		list = ss.findMoneyByeName(name);
 		System.out.println("\n==========================");
-		System.out.println(name+"的薪资发放情况如下：");
+		System.out.println(name + "的薪资发放情况如下：");
 		for (TSalary tSalary : list) {
 			System.out.println(tSalary);
 		}
 		System.out.println("==========================\n");
 	}
-	
 
 	@Test
 	public void selMoneyByeId() {
 		List<TSalary> list = new ArrayList<>();
-		Integer id=1;
+		Integer id = 1;
 		list = ss.findMoneyByeId(id);
 		System.out.println("\n==========================");
-		System.out.println(id+"的薪资发放情况如下：");
+		System.out.println(id + "的薪资发放情况如下：");
 		for (TSalary tSalary : list) {
 			System.out.println(tSalary);
 		}
@@ -58,7 +57,7 @@ public class TaijiTestErpApplicationTests {
 
 	@Test
 	public void saveSal() {
-		TEmp emp = new TEmp(10, "李四", "男", "2151545", null, null);
+		TEmp emp = new TEmp(12, "李四", "男", "2151545", null, null);
 		TSalary salary = new TSalary(5, new Date(), "6000", emp);
 		ss.saveTSalary(salary);
 
@@ -68,7 +67,7 @@ public class TaijiTestErpApplicationTests {
 	@Test
 	public void saveEmp() {
 		TEmp tem = new TEmp();
-		tem.setEId(5);
+		tem.setEId(12);
 		tem.setEName("于新亮");
 		tem.setESex("男");
 		tem.setETel("1326789332");
@@ -80,7 +79,7 @@ public class TaijiTestErpApplicationTests {
 	// 删除员工
 	@Test
 	public void deleteEmp() {
-		empService.deleteEmp(6);
+		empService.deleteEmp(8);
 
 	}
 
@@ -91,10 +90,17 @@ public class TaijiTestErpApplicationTests {
 		System.out.println(queryEmp);
 	}
 
-	// 根据id查找员工
+	// 根据姓名查找员工
 	@Test
 	public void queryEmpByName() {
 		List<TEmp> queryEmp = empService.queryEmpByName("于新亮");
+		System.out.println(queryEmp);
+	}
+
+	// 查找所有员工
+	@Test
+	public void queryEmpAll() {
+		List<TEmp> queryEmp = empService.queryEmpAll();
 		System.out.println(queryEmp);
 	}
 
@@ -104,7 +110,7 @@ public class TaijiTestErpApplicationTests {
 		TEmp emp = new TEmp();
 		emp.setEName("2333");
 		emp.setETel("11111111");
-		TEmp upadteEmp = empService.upadteEmp(8, emp);
+		TEmp upadteEmp = empService.upadteEmp(12, emp);
 		System.out.println(upadteEmp);
 	}
 
@@ -133,8 +139,8 @@ public class TaijiTestErpApplicationTests {
 	@Test
 	public void saveOrg() {
 		TOrg queryOrg = new TOrg();
-		queryOrg.setOId(4);
-		queryOrg.setOName("新媒体");
+		queryOrg.setOId(5);
+		queryOrg.setOName("政府一部");
 		TOrg org = orgService.queryOrg(2);
 		queryOrg.setTOrg(org);
 		orgService.saveOrg(queryOrg);
@@ -143,7 +149,7 @@ public class TaijiTestErpApplicationTests {
 	// 根据id删除部门
 	@Test
 	public void deleteOrg() {
-		orgService.deleteOrg(4);
+		orgService.deleteOrg(5);
 	}
 
 }

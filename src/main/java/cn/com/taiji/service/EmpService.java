@@ -45,8 +45,8 @@ public class EmpService {
 
 	// 查找所有员工
 	@Transactional
-	public List<TEmp> queryEmpAll(int pageStart,int pageSize) {
-		return  (List<TEmp>) empDao.findAll(new PageRequest(pageStart, pageSize));
+	public List<TEmp> queryEmpAll() {
+		return  (List<TEmp>) empDao.findAll();
 	}
 
 	// 根据Id修改用户
